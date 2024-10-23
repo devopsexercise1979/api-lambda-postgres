@@ -12,11 +12,11 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-    # Use the Bash shell by default, and set the working directory to terraform folder
+    # Use the Bash shell by default, and set the working directory to root folder
     defaults:
       run:
         shell: bash
-        working-directory: ./terraform
+        working-directory: ./
 
     steps:
     # Checkout the repository to the GitHub Actions runner
