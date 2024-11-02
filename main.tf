@@ -25,10 +25,10 @@ resource "aws_db_instance" "postgres" {
   engine               = "postgres"
   engine_version       = "13.3"
   instance_class       = "db.t3.micro"
-  name                 = "mydb"
+  db_name              = "mydb"
   username             = var.db_user
   password             = var.db_password
-  publicly_accessible  = true
+  skip_final_snapshot  = true
 
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
 
@@ -64,7 +64,7 @@ resource "aws_lambda_function" "app" {
 
   environment {
     variables = {
-      DB_HOST     = aws_rds_instance.postgres.address
+      DB_HOST     = aws_db_instance.postgres.address
       DB_NAME     = "mydb"
       DB_USER     = var.db_user
       DB_PASSWORD = var.db_password
