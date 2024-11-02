@@ -23,7 +23,7 @@ resource "aws_db_instance" "postgres" {
   allocated_storage    = 20
   storage_type         = "gp2"
   engine               = "postgres"
-  engine_version       = "13.3"
+  engine_version       = "16.4"
   instance_class       = "db.t3.micro"
   db_name              = "mydb"
   username             = var.db_user
@@ -56,7 +56,7 @@ resource "aws_security_group" "rds_sg" {
 }
 
 resource "aws_lambda_function" "app" {
-  filename         = "lambda.zip"  # Zip containing handler.py
+  filename         = "${path.module}/lambda/handler.zip"  # Zip containing handler.py
   function_name    = "app_lambda"
   role             = aws_iam_role.lambda_exec.arn
   handler          = "handler.lambda_handler"
@@ -73,7 +73,7 @@ resource "aws_lambda_function" "app" {
 }
 
 resource "aws_lambda_function" "authorizer" {
-  filename         = "authorizer.zip"  # Zip containing authorizer.py
+  filename         = "${path.module}/lambda/authorizer.zip"  # Zip containing authorizer.py
   function_name    = "authorizer_lambda"
   role             = aws_iam_role.lambda_exec.arn
   handler          = "authorizer.lambda_handler"
