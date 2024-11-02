@@ -57,7 +57,7 @@ jobs:
     - name: Terraform Plan
       run: terraform plan -input=false
       env:
-        db_password: ${{ secrets.DB_PASSWORD }}
+        db_password: ${{ secrets.TF_VAR_DB_PASSWORD }}
       # On push to "main", build or change infrastructure according to Terraform configuration files.
     - name: Terraform Apply
       run: terraform apply -auto-approve -input=false
