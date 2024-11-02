@@ -138,6 +138,10 @@ resource "aws_api_gateway_integration" "post_integration" {
   type        = "AWS_PROXY"
   integration_http_method = "POST"
   uri         = aws_lambda_function.app.invoke_arn
+  depends_on = [
+    aws_api_gateway_method.post_method
+  ]
+
 }
 
 resource "aws_api_gateway_integration" "get_integration" {
@@ -147,6 +151,10 @@ resource "aws_api_gateway_integration" "get_integration" {
   type        = "AWS_PROXY"
   integration_http_method = "GET"
   uri         = aws_lambda_function.app.invoke_arn
+  depends_on = [
+    aws_api_gateway_method.get_method
+  ]
+
 }
 
 resource "aws_api_gateway_deployment" "deployment" {
