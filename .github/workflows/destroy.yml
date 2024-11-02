@@ -1,4 +1,4 @@
-name: 'Deploy AWS resources by Terraform'
+name: 'DESTROY AWS resources by Terraform'
 
 on:
   workflow_dispatch:
